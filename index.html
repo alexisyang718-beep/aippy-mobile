@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Aippy Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <main class="page-stack">
+        <section class="page-view is-active" data-page="home">
+          <div class="feed" id="feed">
+
+<section class="feed-card" data-game="plane">
+              <div class="game-surface plane-surface" id="plane-surface">
+                <div class="plane-tip" id="plane-tip">Tap left / right to dodge</div>
+                <div class="plane-track" id="plane-track">
+                  <div class="plane-player" id="plane-player"></div>
+                </div>
+                <div class="plane-controls control-row">
+                  <button class="game-pill" id="plane-left" type="button">← Left</button>
+                  <button class="game-pill" id="plane-right" type="button">Right →</button>
+                </div>
+              </div>
+
+              <div class="feed-meta-bottom">
+                <div class="feed-stats-row">
+                  <div class="primary-stat">
+                    <img src="icons/浏览量.png" width="28" height="28" alt="">
+                    <strong>196K</strong>
+                  </div>
+                  <div class="stats-trail">
+                    <button class="mini-metric save-toggle">
+                      <img src="icons/收藏.png" width="28" height="20" alt="">
+                      <strong>2.1K</strong>
+                    </button>
+                    <button class="mini-metric like-btn">
+                      <img src="icons/点赞.png" width="21" height="21" alt="">
+                      <strong>2.1K</strong>
+                    </button>
+                    <button class="mini-metric comment-btn">
+                      <img src="icons/comment.png" width="20" height="20" alt="">
+                      <strong>908</strong>
+                    </button>
+                    <button class="mini-metric share-btn">
+                      <img src="icons/分享.png" width="20" height="20" alt="">
+                      <strong>1.4K</strong>
+                    </button>
+                  </div>
+                </div>
+                <div class="feed-author-row">
+                  <div class="creator-block">
+                    <div class="avatar">
+                      <span>✈</span>
+                    </div>
+                    <div>
+                      <div class="author-name-row">
+                        <strong>Alex Jet</strong>
+                      </div>
+                      <p>Plane Dodge</p>
+                    </div>
+                  </div>
+                  <div class="author-actions">
+                    <button class="remix-button" aria-label="remix">
+                      <img src="icons/remix.png" width="26" height="26" alt="">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+<section class="feed-card" data-game="candy">
+              <div class="game-surface candy-surface">
+                <div class="candy-board" id="candy-board"></div>
+                <div class="candy-footer">
+                  <span class="surface-hint">Small board, instant clear</span>
+                  <button class="game-pill small-pill" id="candy-reset" type="button">Reset</button>
+                </div>
+              </div>
+
+              <div class="feed-meta-bottom">
+                <div class="feed-stats-row">
+                  <div class="primary-stat">
+                    <img src="icons/浏览量.png" width="28" height="28" alt="">
+                    <strong>88K</strong>
+                  </div>
+                  <div class="stats-trail">
+                    <button class="mini-metric save-toggle">
+                      <img src="icons/收藏.png" width="28" height="20" alt="">
+                      <strong id="candy-score">0</strong>
+                    </button>
+                    <button class="mini-metric like-btn">
+                      <img src="icons/点赞.png" width="21" height="21" alt="">
+                      <strong>0</strong>
+                    </button>
+                    <button class="mini-metric comment-btn">
+                      <img src="icons/comment.png" width="20" height="20" alt="">
+                      <strong id="candy-best">0</strong>
+                    </button>
+                    <button class="mini-metric share-btn">
+                      <img src="icons/分享.png" width="20" height="20" alt="">
+                      <strong>730</strong>
+                    </button>
+                  </div>
+                </div>
+                <div class="feed-author-row">
+                  <div class="creator-block">
+                    <div class="avatar">
+                      <span>🍬</span>
+                    </div>
+                    <div>
+                      <div class="author-name-row">
+                        <strong>Sugar Lab</strong>
+                      </div>
+                      <p>Candy Pop</p>
+                    </div>
+                  </div>
+                  <div class="author-actions">
+                    <button class="remix-button" aria-label="remix">
+                      <img src="icons/remix.png" width="26" height="26" alt="">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+<section class="feed-card" data-game="shooter">
+              <div class="game-surface shooter-surface" id="shooter-arena">
+                <div class="shooter-tip" id="shooter-tip">Drag to move the camera</div>
+                <div class="shooter-target" id="shooter-target">
+                  <div class="shooter-person-head"></div>
+                  <div class="shooter-person-body"></div>
+                  <div class="shooter-person-arm left"></div>
+                  <div class="shooter-person-arm right"></div>
+                  <div class="shooter-person-leg left"></div>
+                  <div class="shooter-person-leg right"></div>
+                </div>
+                <div class="shooter-crosshair" id="shooter-crosshair"></div>
+                <div class="shooter-controls control-row">
+                  <button class="game-pill fire-pill" id="shooter-fire" type="button">FIRE</button>
+                </div>
+              </div>
+
+              <div class="feed-meta-bottom">
+                <div class="feed-stats-row">
+                  <div class="primary-stat">
+                    <img src="icons/浏览量.png" width="28" height="28" alt="">
+                    <strong>124K</strong>
+                  </div>
+                  <div class="stats-trail">
+                    <button class="mini-metric save-toggle">
+                      <img src="icons/收藏.png" width="28" height="20" alt="">
+                      <strong>1.1K</strong>
+                    </button>
+                    <button class="mini-metric like-btn">
+                      <img src="icons/点赞.png" width="21" height="21" alt="">
+                      <strong id="shooter-hits">0</strong>
+                    </button>
+                    <button class="mini-metric comment-btn">
+                      <img src="icons/comment.png" width="20" height="20" alt="">
+                      <strong id="shooter-shots">0</strong>
+                    </button>
+                    <button class="mini-metric share-btn">
+                      <img src="icons/分享.png" width="20" height="20" alt="">
+                      <strong>1.1K</strong>
+                    </button>
+                  </div>
+                </div>
+                <div class="feed-author-row">
+                  <div class="creator-block">
+                    <div class="avatar">
+                      <span>🎯</span>
+                    </div>
+                    <div>
+                      <div class="author-name-row">
+                        <strong>Scope Club</strong>
+                      </div>
+                      <p>Scope Shot</p>
+                    </div>
+                  </div>
+                  <div class="author-actions">
+                    <button class="remix-button" aria-label="remix">
+                      <img src="icons/remix.png" width="26" height="26" alt="">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+<section class="feed-card" data-game="music">
+              <div class="game-surface music-surface" id="music-surface">
+                <div class="music-player">
+                  <div class="music-art">
+                    <div class="music-disc" id="music-disc"></div>
+                  </div>
+                  <div class="music-meta">
+                    <p>Demo synth loop</p>
+                    <strong id="music-status">Paused</strong>
+                  </div>
+                  <div class="music-progress"><span id="music-progress"></span></div>
+                  <div class="music-bars" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <button class="music-play-button" id="music-toggle" type="button">Play Music</button>
+                </div>
+              </div>
+
+              <div class="feed-meta-bottom">
+                <div class="feed-stats-row">
+                  <div class="primary-stat">
+                    <img src="icons/浏览量.png" width="28" height="28" alt="">
+                    <strong>66K</strong>
+                  </div>
+                  <div class="stats-trail">
+                    <button class="mini-metric">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                      <strong>loop</strong>
+                    </button>
+                    <button class="mini-metric save-toggle">
+                      <img src="icons/收藏.png" width="28" height="20" alt="">
+                      <strong>542</strong>
+                    </button>
+                    <button class="mini-metric like-btn">
+                      <img src="icons/点赞.png" width="21" height="21" alt="">
+                      <strong>318</strong>
+                    </button>
+                    <button class="mini-metric share-btn">
+                      <img src="icons/分享.png" width="20" height="20" alt="">
+                      <strong>542</strong>
+                    </button>
+                  </div>
+                </div>
+                <div class="feed-author-row">
+                  <div class="creator-block">
+                    <div class="avatar">
+                      <span>🎧</span>
+                    </div>
+                    <div>
+                      <div class="author-name-row">
+                        <strong>Night Loop</strong>
+                      </div>
+                      <p>Pocket Beats</p>
+                    </div>
+                  </div>
+                  <div class="author-actions">
+                    <button class="remix-button" aria-label="remix">
+                      <img src="icons/remix.png" width="26" height="26" alt="">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+            </section>
+
+
+        <section class="page-view" data-page="discover">
+          <div class="simple-page discover-page">
+            <div class="simple-page-head">
+              <p class="simple-eyebrow">Explore</p>
+              <h3>Discover</h3>
+            </div>
+            <label class="search-bar" for="discover-search">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input id="discover-search" type="text" placeholder="Find people and creations" autocomplete="off" />
+            </label>
+            <div class="filter-strip-wrap">
+              <div class="filter-strip">
+                <button class="filter-chip active">Hot</button>
+                <button class="filter-chip">Latest</button>
+                <button class="filter-chip">Mindless</button>
+                <button class="filter-chip">Brain Hack</button>
+                <button class="filter-chip">Unhinge</button>
+              </div>
+            </div>
+            <div class="discover-grid">
+              <button class="discover-card mini-card-jump gradient-hot" data-game-target="plane" type="button" aria-label="打开 Plane Dodge">
+                <div class="discover-card-thumb">
+                  <div class="mini-preview mini-preview-plane">✈</div>
+                </div>
+                <div class="discover-card-body">
+                  <strong>Plane Dodge</strong>
+                  <div class="discover-card-footer">
+                    <div class="discover-author">
+                      <div class="discover-avatar">A</div>
+                      <span>Alex Jet</span>
+                    </div>
+                    <div class="discover-likes">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      <span>31.8K</span>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="discover-card mini-card-jump gradient-neon" data-game-target="candy" type="button" aria-label="打开 Candy Pop">
+                <div class="discover-card-thumb">
+                  <div class="mini-preview mini-preview-candy">🍬</div>
+                </div>
+                <div class="discover-card-body">
+                  <strong>Candy Pop</strong>
+                  <div class="discover-card-footer">
+                    <div class="discover-author">
+                      <div class="discover-avatar">S</div>
+                      <span>Sugar Lab</span>
+                    </div>
+                    <div class="discover-likes">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      <span>14.2K</span>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="discover-card mini-card-jump gradient-meme" data-game-target="shooter" type="button" aria-label="打开 Scope Shot">
+                <div class="discover-card-thumb">
+                  <div class="mini-preview mini-preview-scope">⌖</div>
+                </div>
+                <div class="discover-card-body">
+                  <strong>Scope Shot</strong>
+                  <div class="discover-card-footer">
+                    <div class="discover-author">
+                      <div class="discover-avatar">S</div>
+                      <span>Scope Club</span>
+                    </div>
+                    <div class="discover-likes">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      <span>19.7K</span>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="discover-card mini-card-jump gradient-dice" data-game-target="music" type="button" aria-label="打开 Pocket Beats">
+                <div class="discover-card-thumb">
+                  <div class="mini-preview mini-preview-music">♫</div>
+                </div>
+                <div class="discover-card-body">
+                  <strong>Pocket Beats</strong>
+                  <div class="discover-card-footer">
+                    <div class="discover-author">
+                      <div class="discover-avatar">N</div>
+                      <span>Night Loop</span>
+                    </div>
+                    <div class="discover-likes">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      <span>10.9K</span>
+                    </div>
+                  </div>
+                </div>
+              </button>
+            </div>
+            </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-view" data-page="alerts">
+          <div class="simple-page alerts-page">
+            <div class="alerts-head">
+              <h3>Notifications</h3>
+              <button class="profile-chip chip-icon" aria-label="filter">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+              </button>
+            </div>
+
+            <div class="alerts-filter-wrap">
+              <div class="alerts-filter">
+                <button class="alerts-tab active">All</button>
+                <button class="alerts-tab">Likes</button>
+                <button class="alerts-tab">Follows</button>
+                <button class="alerts-tab">Remixes</button>
+              </div>
+            </div>
+
+            <div class="alerts-list">
+              <div class="alert-row is-unread">
+                <div class="alert-avatar alert-av-sys">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div class="alert-body">
+                  <p>You leveled up to <strong>Lv.3</strong> — keep creating!</p>
+                  <span class="alert-time">Just now</span>
+                </div>
+                <div class="alert-chevron">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
+
+              <div class="alert-row is-unread">
+                <div class="alert-avatar alert-av-hunter">AJ</div>
+                <div class="alert-body">
+                  <p><strong>Alex Jet</strong> liked your remix of <strong>Plane Dodge</strong></p>
+                  <span class="alert-time">5m ago</span>
+                </div>
+                <div class="alert-thumb alert-thumb-hunter"></div>
+              </div>
+
+              <div class="alert-row is-unread">
+                <div class="alert-avatar alert-av-timer">SL</div>
+                <div class="alert-body">
+                  <p><strong>Sugar Lab</strong> started following you</p>
+                  <span class="alert-time">12m ago</span>
+                </div>
+                <button class="alert-follow-btn">Follow</button>
+              </div>
+
+              <div class="alert-row">
+                <div class="alert-avatar alert-av-dice">NL</div>
+                <div class="alert-body">
+                  <p><strong>Night Loop</strong> remixed <strong>Candy Pop</strong></p>
+                  <span class="alert-time">1h ago</span>
+                </div>
+                <div class="alert-thumb alert-thumb-timer"></div>
+              </div>
+
+              <div class="alert-row">
+                <div class="alert-avatar alert-av-meme">SC</div>
+                <div class="alert-body">
+                  <p><strong>Scope Club</strong> commented on <strong>Plane Dodge</strong></p>
+                  <span class="alert-time">2h ago</span>
+                </div>
+                <div class="alert-thumb alert-thumb-hunter"></div>
+              </div>
+
+              <div class="alert-row">
+                <div class="alert-avatar alert-av-hunter">AJ</div>
+                <div class="alert-body">
+                  <p><strong>Alex Jet</strong> and <strong>2 others</strong> liked <strong>Scope Shot</strong></p>
+                  <span class="alert-time">Yesterday</span>
+                </div>
+                <div class="alert-thumb alert-thumb-meme"></div>
+              </div>
+
+              <div class="alert-row">
+                <div class="alert-avatar alert-av-timer">SL</div>
+                <div class="alert-body">
+                  <p><strong>Sugar Lab</strong> bookmarked your game</p>
+                  <span class="alert-time">Yesterday</span>
+                </div>
+                <div class="alert-thumb alert-thumb-dice"></div>
+              </div>
+
+              <div class="alert-row">
+                <div class="alert-avatar alert-av-dice">NL</div>
+                <div class="alert-body">
+                  <p><strong>Night Loop</strong> started following you</p>
+                  <span class="alert-time">2 days ago</span>
+                </div>
+                <button class="alert-follow-btn">Follow</button>
+              </div>
+
+              <div class="alert-row">
+                <div class="alert-avatar alert-av-meme">SC</div>
+                <div class="alert-body">
+                  <p><strong>Scope Club</strong> and <strong>4 others</strong> liked <strong>Candy Pop</strong></p>
+                  <span class="alert-time">3 days ago</span>
+                </div>
+                <div class="alert-thumb alert-thumb-timer"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-view" data-page="profile">
+          <div class="simple-page profile-page">
+            <div class="profile-topbar">
+              <button class="profile-chip chip-icon" aria-label="inbox">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </button>
+              <div class="profile-level-wrap">
+                <div class="profile-level-badge">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div class="profile-level-track">
+                  <strong>Lv.2</strong>
+                  <span></span>
+                </div>
+              </div>
+              <div class="profile-top-actions">
+                <div class="profile-chip gem-chip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 9 12 22 5 9 12 2"/></svg>
+                  <strong>1050</strong>
+                </div>
+                <button class="profile-chip chip-icon" aria-label="settings">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="profile-header-card">
+              <div class="profile-avatar-lg">
+                <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="26" cy="20" r="11" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.32)" stroke-width="1.5"/>
+                  <path d="M8 48c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3>alexis yang</h3>
+              <div class="profile-handle-row">
+                <p class="profile-handle">@trippyshade_6r0g</p>
+                <button class="profile-copy-btn" aria-label="copy handle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </div>
+              <div class="profile-stats-row">
+                <div><strong>0</strong><span>Followers</span></div>
+                <div><strong>0</strong><span>Following</span></div>
+              </div>
+              <p class="profile-bio">No bio yet</p>
+
+              <div class="profile-actions">
+                <button class="profile-main-btn">Edit Profile</button>
+                <button class="profile-icon-btn" aria-label="share">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+                <button class="profile-icon-btn" aria-label="discord">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="profile-tabs-strip">
+              <button class="profile-mini-tab active" aria-label="projects">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              </button>
+              <button class="profile-mini-tab" aria-label="likes">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="profile-mini-tab" aria-label="saved">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              </button>
+              <button class="profile-mini-tab" aria-label="recent">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </button>
+            </div>
+
+            <div class="profile-projects-grid" id="profile-projects-grid" style="display:none"></div>
+
+            <div class="profile-empty-state" id="profile-projects-empty">
+              <div class="profile-ghost">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M40 8C24.536 8 12 20.536 12 36v28c0 2.2 2.8 3.3 4.2 1.6l4.8-5.8 4.8 5.8c1.2 1.4 3.2 1.4 4.4 0l4.8-5.8 4.8 5.8c1.2 1.4 3.2 1.4 4.4 0l4.8-5.8 4.8 5.8C70.2 67.3 68 66.2 68 64V36C68 20.536 55.464 8 40 8Z" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+                  <circle cx="32" cy="35" r="4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                  <path d="M30 33 Q32 37 34 33" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                  <circle cx="48" cy="35" r="4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                  <path d="M46 33 Q48 37 50 33" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
+              <p>No projects yet</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-view" data-page="create">
+          <div class="simple-page create-page">
+            <div class="create-topbar">
+              <button class="profile-chip chip-icon" aria-label="menu">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+              </button>
+              <div class="create-brand">
+                <div class="create-brand-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="12" rx="5"/><line x1="7" y1="13" x2="7" y2="15.5"/><line x1="5.5" y1="14.25" x2="8.5" y2="14.25"/><circle cx="16" cy="12.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="19" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg>
+                </div>
+                <strong>aippy</strong>
+              </div>
+              <div class="profile-chip gem-chip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 9 12 22 5 9 12 2"/></svg>
+                <strong>1000</strong>
+              </div>
+            </div>
+
+            <div class="create-composer">
+              <div class="create-input-shell">
+                <textarea class="create-text-input" id="create-text-input" rows="3" placeholder="Type your idea and start building..."></textarea>
+                <div class="create-toolbar">
+                  <button class="create-tool create-tool-left" id="create-ideas-btn" aria-label="ideas">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+                    <span>Ideas</span>
+                  </button>
+                  <div class="create-tool-group">
+                    <button class="create-tool" aria-label="voice">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+                    </button>
+                    <button class="create-tool create-tool-send" aria-label="send">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="create-shortcuts">
+              <button class="create-shortcut">
+                <span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                </span>
+                <strong>Images</strong>
+              </button>
+              <button class="create-shortcut">
+                <span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                </span>
+                <strong>Sounds</strong>
+              </button>
+              <button class="create-shortcut">
+                <span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                </span>
+                <strong>Memes</strong>
+              </button>
+              <button class="create-shortcut">
+                <span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.68 5.17L19 10l-5.32 1.83L12 17l-1.68-5.17L5 10l5.32-1.83L12 3z"/><path d="M5 3l.7 2.2L8 6l-2.3.8L5 9l-.7-2.2L2 6l2.3-.8L5 3z"/><path d="M19 13l.7 2.2L22 16l-2.3.8-.7 2.2-.7-2.2L16 16l2.3-.8L19 13z"/></svg>
+                </span>
+                <strong>Make Image</strong>
+              </button>
+            </div>
+
+            <section class="create-banner">
+              <div>
+                <p class="create-banner-kicker">Aippy Masterpiece</p>
+                <strong>Apr 10 — Apr 23</strong>
+              </div>
+              <button class="create-banner-btn">JOIN NOW</button>
+            </section>
+
+            <section class="create-ideas">
+              <div class="simple-page-head create-ideas-head">
+                <div>
+                  <h4>Need ideas? Tap below</h4>
+                </div>
+                <span class="ideas-lightbulb">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+                </span>
+              </div>
+
+              <div class="idea-grid">
+                <article class="idea-card idea-card-dots">
+                  <div class="idea-labels"><span>Before</span><span>After</span></div>
+                  <div class="idea-preview idea-preview-dots"></div>
+                </article>
+                <article class="idea-card idea-card-static">
+                  <div class="idea-labels"><span>Before</span><span>After</span></div>
+                  <div class="idea-preview idea-preview-static"></div>
+                </article>
+                <article class="idea-card idea-card-triangles">
+                  <div class="idea-labels"><span>Before</span><span>After</span></div>
+                  <div class="idea-preview idea-preview-triangles"></div>
+                </article>
+                <article class="idea-card idea-card-noise">
+                  <div class="idea-labels"><span>Before</span><span>After</span></div>
+                  <div class="idea-preview idea-preview-noise"></div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <nav class="tab-bar" aria-label="Bottom tabs">
+        <div class="tab-cluster">
+          <button class="tab nav-tab active" data-target="home" aria-label="首页">
+            <img src="icons/home.png" width="28" height="28" alt="">
+          </button>
+          <button class="tab nav-tab" data-target="discover" aria-label="发现">
+            <img src="icons/发现页.png" width="27" height="27" alt="">
+          </button>
+          <button class="tab nav-tab" data-target="alerts" aria-label="通知">
+            <img src="icons/notice.png" width="30" height="30" alt="">
+          </button>
+          <button class="tab nav-tab" data-target="profile" aria-label="我的">
+            <img src="icons/个人页.png" width="30" height="30" alt="">
+          </button>
+        </div>
+        <button class="tab plus nav-tab" data-target="create" aria-label="创作">
+          <img src="icons/加号.png" width="26" height="26" alt="">
+        </button>
+      </nav>
+
+      <div class="remix-overlay" id="remix-overlay" hidden></div>
+      <section class="remix-sheet" id="remix-sheet" aria-hidden="true">
+        <div class="remix-sheet-handle" aria-hidden="true"></div>
+        <div class="remix-sheet-head">
+          <p>Remix</p>
+          <strong id="remix-sheet-title">Wildlife Hunter</strong>
+        </div>
+        <label class="remix-input-shell" for="remix-input">
+          <textarea id="remix-input" rows="4" placeholder="Describe what you'd like to change or add..."></textarea>
+        </label>
+        <button class="remix-submit" id="remix-submit" type="button" disabled>Remix →</button>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+           IDEAS PANEL  (fullscreen overlay)
+      ═══════════════════════════════════════════ -->
+      <div class="ideas-panel" id="ideas-panel" aria-hidden="true">
+        <button class="ideas-panel-close" id="ideas-panel-close" type="button" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+
+        <div class="ideas-panel-prompt-card">
+          <p class="ideas-panel-prompt-text" id="ideas-panel-prompt-text">Make a game where you shake your head to control screen elements and head motion triggers effects</p>
+          <div class="ideas-panel-toolbar">
+            <button class="ideas-toggle-pill" id="ideas-toggle-pill" type="button" aria-label="Ideas mode">
+              <span class="ideas-toggle-track">
+                <span class="ideas-toggle-knob">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+                </span>
+              </span>
+            </button>
+            <button class="ideas-panel-mic" type="button" aria-label="Voice">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+            </button>
+            <button class="ideas-panel-send" id="ideas-panel-send" type="button" aria-label="Send">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="ideas-shortcuts-row">
+          <button class="ideas-shortcut-btn" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Images
+          </button>
+          <button class="ideas-shortcut-btn" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            Sounds
+          </button>
+          <button class="ideas-shortcut-btn" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            Memes
+          </button>
+          <button class="ideas-shortcut-btn" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.68 5.17L19 10l-5.32 1.83L12 17l-1.68-5.17L5 10l5.32-1.83L12 3z"/></svg>
+            Make Image
+          </button>
+        </div>
+
+        <div class="ideas-chips-section">
+          <div class="ideas-chips-grid">
+            <button class="idea-chip" type="button">with glowing particle trails</button>
+            <button class="idea-chip idea-chip-accent" type="button">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              and ambient background...
+            </button>
+            <button class="idea-chip" type="button">adjust motion sensitivity slider</button>
+            <button class="idea-chip" type="button">elements react to speed</button>
+            <button class="idea-chip" type="button">add a scoring system</button>
+            <button class="idea-chip" type="button">apply screen distortion effects</button>
+            <button class="idea-chip" type="button">control object bounce physics</button>
+            <button class="idea-chip" type="button">enable subtle haptic feedback</button>
+            <button class="idea-chip idea-chip-accent" type="button">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              choose background visuals
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+           AI BUILDER  (Chat + Preview) — powered by Kimi K2.5
+      ═══════════════════════════════════════════ -->
+      <div class="ai-builder" id="ai-builder" aria-hidden="true">
+        <!-- topbar -->
+        <div class="ai-builder-topbar">
+          <button class="ai-tb-btn" id="ai-builder-close" type="button" aria-label="Close">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+          <button class="ai-tb-btn" id="ai-new-chat-btn" type="button" aria-label="New chat">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="ai-tab-pill">
+            <button class="ai-tab active" id="ai-tab-chat" type="button" data-tab="chat">Chat</button>
+            <button class="ai-tab" id="ai-tab-preview" type="button" data-tab="preview">Preview</button>
+          </div>
+          <button class="ai-tb-btn ai-tb-more" type="button" aria-label="More">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+          </button>
+          <button class="ai-post-btn" id="ai-post-btn" type="button">Post</button>
+        </div>
+
+        <!-- chat view -->
+        <div class="ai-view ai-chat-view is-active" id="ai-chat-view">
+          <div class="ai-chat-messages" id="ai-chat-messages">
+            <div class="ai-msg ai-msg-ai">
+              <div class="ai-msg-ai-av">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="12" rx="5"/><line x1="7" y1="13" x2="7" y2="15.5"/><line x1="5.5" y1="14.25" x2="8.5" y2="14.25"/><circle cx="16" cy="12.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="19" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg>
+                <span>aippy</span>
+              </div>
+              <div class="ai-welcome-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.68 5.17L19 10l-5.32 1.83L12 17l-1.68-5.17L5 10l5.32-1.83L12 3z"/></svg>
+                Describe any game you want to create!
+              </div>
+            </div>
+          </div>
+          <div class="ai-chat-input-area">
+            <div class="ai-chat-input-shell">
+              <input class="ai-chat-input" id="ai-chat-input" type="text" placeholder="Describe a game idea..." />
+              <div class="ai-chat-input-tools">
+                <button class="ai-tb-btn" id="ai-voice-btn" type="button" aria-label="Voice">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+                </button>
+                <button class="ai-send-btn" id="ai-send-btn" type="button" aria-label="Send">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="ai-chat-shortcuts">
+              <button class="ideas-shortcut-btn ai-quick-prompt" type="button" data-prompt="Make a flappy bird style tap game">🐦 Flappy</button>
+              <button class="ideas-shortcut-btn ai-quick-prompt" type="button" data-prompt="Make a space shooter game where you tap to shoot aliens">🚀 Shooter</button>
+              <button class="ideas-shortcut-btn ai-quick-prompt" type="button" data-prompt="Make a fruit catching game with falling items">🍎 Catcher</button>
+              <button class="ideas-shortcut-btn ai-quick-prompt" type="button" data-prompt="Make a color matching memory game">🧠 Memory</button>
+              <button class="ideas-shortcut-btn ai-quick-prompt" type="button" data-prompt="Make a snake game with touch swipe controls">🐍 Snake</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- preview view -->
+        <div class="ai-view ai-preview-view" id="ai-preview-view">
+          <div class="ai-preview-canvas" id="ai-preview-canvas">
+            <div class="ai-preview-empty">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="12" rx="5"/><line x1="7" y1="13" x2="7" y2="15.5"/><line x1="5.5" y1="14.25" x2="8.5" y2="14.25"/><circle cx="16" cy="12.5" r="1.3"/><circle cx="19" cy="15.5" r="1.3"/></svg>
+              <p>Your game preview will appear here</p>
+            </div>
+          </div>
+          <div class="ai-preview-feedback-pill" id="ai-feedback-pill" style="display:none">
+            <span>Does this work for you?</span>
+            <button class="ai-feedback-btn" id="ai-feedback-yes" type="button" aria-label="Yes">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+            </button>
+            <button class="ai-feedback-btn" id="ai-feedback-no" type="button" aria-label="No">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+            </button>
+          </div>
+          <div class="ai-preview-tools-row">
+            <button class="ai-preview-tool-btn" id="ai-tool-tweaks" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              Tweaks
+            </button>
+            <button class="ai-preview-tool-btn" id="ai-tool-colors" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="14.5" r="2.5"/><circle cx="8.5" cy="15.5" r="2.5"/><path d="M13.5 9l4 3.5M16 14.5l-5-.5"/></svg>
+              Colors
+            </button>
+            <button class="ai-preview-tool-btn" id="ai-tool-regen" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.09"/></svg>
+              Regenerate
+            </button>
+            <button class="ai-preview-tool-btn" id="ai-tool-sound" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              Add Sound
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+           POST / PUBLISH SCREEN
+      ═══════════════════════════════════════════ -->
+      <div class="publish-screen" id="publish-screen" aria-hidden="true">
+        <button class="publish-close" id="publish-close" type="button" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="publish-scroll">
+          <div class="publish-cover-wrap">
+            <div class="publish-cover-preview">
+              <h2 class="ai-preview-title" style="font-size:22px">Head Motion</h2>
+              <p class="ai-preview-sub" style="font-size:12px">Tilt &amp; Shake to Play</p>
+              <button class="ai-preview-start-btn" style="font-size:13px;padding:10px 24px" type="button">Tap to Start</button>
+              <button class="publish-cover-upload" type="button" aria-label="Upload cover">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              </button>
+            </div>
+            <p class="publish-cover-hint">A great cover makes your work stand out!<br><span>(Upload an image, GIF, max 5MB.)</span></p>
+          </div>
+
+          <div class="publish-field-group">
+            <label class="publish-label">Project Name</label>
+            <input class="publish-name-input" id="publish-name-input" type="text" value="Head Motion Control Game" />
+          </div>
+
+          <div class="publish-field-group">
+            <label class="publish-label">Visibility</label>
+            <p class="publish-label-sub">Control who can view your project.</p>
+            <div class="publish-radio-list">
+              <label class="publish-radio-item publish-radio-selected">
+                <div>
+                  <strong>Public &amp; Remixable</strong>
+                  <span>Anyone can view and remix.</span>
+                </div>
+                <input type="radio" name="visibility" value="public-remix" checked />
+                <span class="publish-radio-dot"></span>
+              </label>
+              <label class="publish-radio-item">
+                <div>
+                  <strong>Public &amp; View Only</strong>
+                  <span>Anyone can view, no remix.</span>
+                </div>
+                <input type="radio" name="visibility" value="public-view" />
+                <span class="publish-radio-dot"></span>
+              </label>
+              <label class="publish-radio-item">
+                <div>
+                  <strong>Private</strong>
+                  <span>Only friends with link you share can view.</span>
+                </div>
+                <input type="radio" name="visibility" value="private" />
+                <span class="publish-radio-dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <button class="publish-post-btn" id="publish-post-btn" type="button">Post</button>
+        </div>
+      </div>
+
+      <!-- Comment Sheet -->
+      <div class="remix-overlay" id="comment-overlay" hidden></div>
+      <section class="comment-sheet" id="comment-sheet" aria-hidden="true">
+        <div class="comment-sheet-handle" aria-hidden="true"></div>
+        <div class="comment-sheet-head">
+          <strong>Comments <span id="comment-sheet-count" style="font-weight:400;color:rgba(255,255,255,0.4);font-size:14px;">908</span></strong>
+          <button class="comment-sheet-close" id="comment-sheet-close" type="button" aria-label="Close comments">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="comment-list" id="comment-list">
+          <div class="comment-row">
+            <div class="comment-av comment-av-a">A</div>
+            <div class="comment-body">
+              <div class="comment-meta-row">
+                <span class="comment-name">alex_jet99</span>
+                <span class="comment-level">Lv.8</span>
+                <span class="comment-ts">2m ago</span>
+              </div>
+              <p class="comment-text">Bro I scored 47 on this, it gets insanely fast after 30 😭</p>
+              <div class="comment-foot">
+                <button class="comment-heart-btn" type="button">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  <span>182</span>
+                </button>
+                <button class="comment-reply-btn" type="button">Reply</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment-row">
+            <div class="comment-av comment-av-b">M</div>
+            <div class="comment-body">
+              <div class="comment-meta-row">
+                <span class="comment-name">maxi_wave</span>
+                <span class="comment-level">Lv.5</span>
+                <span class="comment-ts">5m ago</span>
+              </div>
+              <p class="comment-text">ok the controls are actually really tight once you get used to them</p>
+              <div class="comment-foot">
+                <button class="comment-heart-btn" type="button">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  <span>94</span>
+                </button>
+                <button class="comment-reply-btn" type="button">Reply</button>
+              </div>
+            </div>
+            <div class="comment-thumb">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+          </div>
+
+          <div class="comment-row">
+            <div class="comment-av comment-av-c">S</div>
+            <div class="comment-body">
+              <div class="comment-meta-row">
+                <span class="comment-name">sunfire_x</span>
+                <span class="comment-level">Lv.12</span>
+                <span class="comment-ts">11m ago</span>
+              </div>
+              <p class="comment-text">Remixed this into a space version, way harder 🚀</p>
+              <div class="comment-foot">
+                <button class="comment-heart-btn liked" type="button">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="#ff4c66" stroke="#ff4c66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  <span>341</span>
+                </button>
+                <button class="comment-reply-btn" type="button">Reply</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment-row">
+            <div class="comment-av comment-av-d">K</div>
+            <div class="comment-body">
+              <div class="comment-meta-row">
+                <span class="comment-name">kira_bits</span>
+                <span class="comment-level">Lv.3</span>
+                <span class="comment-ts">28m ago</span>
+              </div>
+              <p class="comment-text">can someone explain how to dodge the diagonal ones? they kill me every time</p>
+              <div class="comment-foot">
+                <button class="comment-heart-btn" type="button">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  <span>29</span>
+                </button>
+                <button class="comment-reply-btn" type="button">Reply</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment-row">
+            <div class="comment-av comment-av-e">T</div>
+            <div class="comment-body">
+              <div class="comment-meta-row">
+                <span class="comment-name">trix_founder</span>
+                <span class="comment-level">Lv.6</span>
+                <span class="comment-ts">1h ago</span>
+              </div>
+              <p class="comment-text">This one's addictive ngl. Lost 20 min to it already 💀</p>
+              <div class="comment-foot">
+                <button class="comment-heart-btn" type="button">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  <span>207</span>
+                </button>
+                <button class="comment-reply-btn" type="button">Reply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comment-input-bar">
+          <div class="comment-input-av"></div>
+          <input class="comment-input-field" id="comment-input-field" type="text" placeholder="Add a comment..." />
+          <button class="comment-input-send" type="button" aria-label="Send comment">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Share Sheet -->
+      <div class="remix-overlay" id="share-overlay" hidden></div>
+      <section class="share-sheet" id="share-sheet" aria-hidden="true">
+        <div class="share-sheet-handle" aria-hidden="true"></div>
+        <div class="share-sheet-head">
+          <strong>Share</strong>
+          <button class="share-sheet-close" id="share-sheet-close" type="button" aria-label="Close share">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="share-preview-card">
+          <div class="share-preview-thumb">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="share-preview-info">
+            <strong id="share-sheet-title">Plane Dodge</strong>
+            <span>by Alex Jet · Arcade dodge</span>
+          </div>
+        </div>
+        <div class="share-platform-grid">
+          <button class="share-platform-btn" type="button" id="share-copy-link">
+            <div class="share-platform-icon share-icon-link">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </div>
+            <span>Copy Link</span>
+          </button>
+          <button class="share-platform-btn" type="button">
+            <div class="share-platform-icon share-icon-more">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <span>Share via</span>
+          </button>
+          <button class="share-platform-btn" type="button">
+            <div class="share-platform-icon share-icon-msg">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span>WeChat</span>
+          </button>
+          <button class="share-platform-btn" type="button">
+            <div class="share-platform-icon share-icon-wb">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </div>
+            <span>Weibo</span>
+          </button>
+          <button class="share-platform-btn" type="button">
+            <div class="share-platform-icon share-icon-qq">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m4 4V7"/></svg>
+            </div>
+            <span>QQ</span>
+          </button>
+          <button class="share-platform-btn" type="button">
+            <div class="share-platform-icon share-icon-bili">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M16 2l3 5M8 2l-3 5M12 12v4m-4-4v4"/></svg>
+            </div>
+            <span>Bilibili</span>
+          </button>
+          <button class="share-platform-btn" type="button">
+            <div class="share-platform-icon share-icon-ins">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <span>Instagram</span>
+          </button>
+          <button class="share-platform-btn" type="button">
+            <div class="share-platform-icon share-icon-x">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.833L2.252 2.25h6.944l4.254 5.622 5.794-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </div>
+            <span>X</span>
+          </button>
+        </div>
+        <div class="share-util-row">
+          <button class="share-util-btn" type="button" id="share-refresh-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.09"/></svg>
+            Refresh
+          </button>
+          <button class="share-util-btn danger" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Report
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <script src="./app.js"></script>
+    <script>
+      // ══════════════════════════════════════════════════
+      //  UI INTERACTIONS (Inline script)
+      // ══════════════════════════════════════════════════
+
+      // Alerts tab toggle
+      document.querySelectorAll('.alerts-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var filter = tab.closest('.alerts-filter');
+          if (filter) filter.querySelectorAll('.alerts-tab').forEach(function(t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+        });
+      });
+
+      // Filter chip toggle
+      document.querySelectorAll('.filter-chip').forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          var strip = chip.closest('.filter-strip');
+          if (strip) strip.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+        });
+      });
+
+      // Profile tabs toggle
+      document.querySelectorAll('.profile-mini-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          document.querySelectorAll('.profile-mini-tab').forEach(function(t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+        });
+      });
+
+      // Copy handle
+      var copyBtn = document.querySelector('.profile-copy-btn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function() {
+          navigator.clipboard && navigator.clipboard.writeText('@trippyshade_6r0g');
+          copyBtn.style.color = 'var(--green)';
+          setTimeout(function() { copyBtn.style.color = ''; }, 1000);
+        });
+      }
+
+      // ── Comment Sheet ─────────────────────────────
+      var commentOverlay = document.getElementById('comment-overlay');
+      var commentSheet   = document.getElementById('comment-sheet');
+      var commentClose   = document.getElementById('comment-sheet-close');
+      var commentCount   = document.getElementById('comment-sheet-count');
+
+      function openCommentSheet(card) {
+        var countEl = card ? card.querySelector('.comment-btn strong') : null;
+        if (commentCount && countEl) commentCount.textContent = countEl.textContent;
+        commentOverlay.removeAttribute('hidden');
+        requestAnimationFrame(function() {
+          commentOverlay.classList.add('is-visible');
+          commentSheet.classList.add('is-visible');
+          commentSheet.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('sheet-open');
+        });
+      }
+
+      function closeCommentSheet() {
+        commentOverlay.classList.remove('is-visible');
+        commentSheet.classList.remove('is-visible');
+        commentSheet.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('sheet-open');
+        setTimeout(function() { commentOverlay.setAttribute('hidden', 'hidden'); }, 240);
+      }
+
+      document.querySelectorAll('.comment-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() { openCommentSheet(btn.closest('.feed-card')); });
+      });
+      commentClose && commentClose.addEventListener('click', closeCommentSheet);
+      commentOverlay && commentOverlay.addEventListener('click', closeCommentSheet);
+
+      // Comment heart toggle
+      document.querySelectorAll('.comment-heart-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var liked = btn.classList.toggle('liked');
+          var numEl = btn.querySelector('span');
+          if (numEl) numEl.textContent = String(liked ? (parseInt(numEl.textContent,10)||0)+1 : Math.max(0,(parseInt(numEl.textContent,10)||0)-1));
+          var svg = btn.querySelector('svg');
+          if (svg) { svg.setAttribute('fill', liked ? '#ff4c66' : 'none'); svg.setAttribute('stroke', liked ? '#ff4c66' : 'currentColor'); }
+        });
+      });
+
+      // Comment send
+      var commentSend = document.querySelector('.comment-input-send');
+      var commentField = document.getElementById('comment-input-field');
+      if (commentSend && commentField) {
+        commentSend.addEventListener('click', function() {
+          var text = commentField.value.trim();
+          if (!text) return;
+          var list = document.getElementById('comment-list');
+          var row = document.createElement('div');
+          row.className = 'comment-row';
+          row.innerHTML = '<div class="comment-av comment-av-a" style="background:linear-gradient(135deg,#2bffb8,#0096ff)">Me</div>'
+            + '<div class="comment-body">'
+            + '<div class="comment-meta-row"><span class="comment-name">You</span><span class="comment-level">Lv.1</span><span class="comment-ts">now</span></div>'
+            + '<p class="comment-text">' + text.replace(/</g,'&lt;') + '</p>'
+            + '<div class="comment-foot"><button class="comment-heart-btn" type="button"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>0</span></button><button class="comment-reply-btn" type="button">Reply</button></div>'
+            + '</div>';
+          list.appendChild(row);
+          commentField.value = '';
+          list.scrollTo({ top: list.scrollHeight, behavior: 'smooth' });
+        });
+      }
+
+      // ── Share Sheet ──────────────────────────────
+      var shareOverlay = document.getElementById('share-overlay');
+      var shareSheet   = document.getElementById('share-sheet');
+      var shareClose   = document.getElementById('share-sheet-close');
+      var shareTitle   = document.getElementById('share-sheet-title');
+
+      function openShareSheet(card) {
+        var titleEl = card ? card.querySelector('.feed-meta-top h1, .feed-meta-top h2') : null;
+        if (shareTitle && titleEl) shareTitle.textContent = titleEl.textContent.trim();
+        shareOverlay.removeAttribute('hidden');
+        requestAnimationFrame(function() {
+          shareOverlay.classList.add('is-visible');
+          shareSheet.classList.add('is-visible');
+          shareSheet.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('sheet-open');
+        });
+      }
+
+      function closeShareSheet() {
+        shareOverlay.classList.remove('is-visible');
+        shareSheet.classList.remove('is-visible');
+        shareSheet.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('sheet-open');
+        setTimeout(function() { shareOverlay.setAttribute('hidden', 'hidden'); }, 240);
+      }
+
+      document.querySelectorAll('.share-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() { openShareSheet(btn.closest('.feed-card')); });
+      });
+      shareClose && shareClose.addEventListener('click', closeShareSheet);
+      shareOverlay && shareOverlay.addEventListener('click', closeShareSheet);
+
+      var shareCopyLink = document.getElementById('share-copy-link');
+      if (shareCopyLink) {
+        shareCopyLink.addEventListener('click', function() {
+          navigator.clipboard && navigator.clipboard.writeText('https://aippy-game.pages.woa.com');
+          var span = shareCopyLink.querySelector('span');
+          if (span) { span.textContent = 'Copied!'; setTimeout(function() { span.textContent = 'Copy Link'; }, 1600); }
+        });
+      }
+
+      // Save toggle
+      document.querySelectorAll('.save-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function() { btn.classList.toggle('active'); });
+      });
+
+      // ── Ideas Panel ───────────────────────────────
+      var ideasPanel      = document.getElementById('ideas-panel');
+      var ideasCloseBtn   = document.getElementById('ideas-panel-close');
+      var ideasSendBtn    = document.getElementById('ideas-panel-send');
+      var ideasPromptText = document.getElementById('ideas-panel-prompt-text');
+      var createIdeasBtn  = document.getElementById('create-ideas-btn');
+
+      function openIdeasPanel() {
+        if (!ideasPanel) return;
+        requestAnimationFrame(function() {
+          ideasPanel.classList.add('is-open');
+          ideasPanel.setAttribute('aria-hidden', 'false');
+        });
+      }
+      function closeIdeasPanel() {
+        if (!ideasPanel) return;
+        ideasPanel.classList.remove('is-open');
+        ideasPanel.setAttribute('aria-hidden', 'true');
+      }
+
+      createIdeasBtn && createIdeasBtn.addEventListener('click', openIdeasPanel);
+      ideasCloseBtn && ideasCloseBtn.addEventListener('click', closeIdeasPanel);
+
+      document.querySelectorAll('.idea-chip').forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          if (ideasPromptText) ideasPromptText.textContent = chip.textContent.trim();
+          document.querySelectorAll('.idea-chip').forEach(function(c) { c.classList.remove('idea-chip-selected'); });
+          chip.classList.add('idea-chip-selected');
+        });
+      });
+
+      // ── AI Builder ────────────────────────────────
+      var aiBuilder      = document.getElementById('ai-builder');
+      var aiBuilderClose = document.getElementById('ai-builder-close');
+      var aiPostBtn      = document.getElementById('ai-post-btn');
+      var aiTabChat      = document.getElementById('ai-tab-chat');
+      var aiTabPreview   = document.getElementById('ai-tab-preview');
+      var aiChatView     = document.getElementById('ai-chat-view');
+      var aiPreviewView  = document.getElementById('ai-preview-view');
+      var aiChatInput    = document.getElementById('ai-chat-input');
+      var aiSendBtn      = document.getElementById('ai-send-btn');
+      var aiNewChatBtn   = document.getElementById('ai-new-chat-btn');
+
+      function openAiBuilder(prompt) {
+        if (!aiBuilder) return;
+        requestAnimationFrame(function() {
+          aiBuilder.classList.add('is-open');
+          aiBuilder.setAttribute('aria-hidden', 'false');
+        });
+        // If prompt provided, auto-send
+        if (prompt && prompt.trim()) {
+          setTimeout(function() {
+            if (typeof generateGame === 'function') generateGame(prompt.trim());
+          }, 400);
+        }
+      }
+
+      function closeAiBuilder() {
+        if (!aiBuilder) return;
+        aiBuilder.classList.remove('is-open');
+        aiBuilder.setAttribute('aria-hidden', 'true');
+        setTimeout(function() { switchAiTab('chat'); }, 340);
+      }
+
+      function switchAiTab(tab) {
+        if (!aiTabChat || !aiTabPreview || !aiChatView || !aiPreviewView) return;
+        var isChat = (tab === 'chat');
+        aiTabChat.classList.toggle('active', isChat);
+        aiTabPreview.classList.toggle('active', !isChat);
+        aiChatView.classList.toggle('is-active', isChat);
+        aiPreviewView.classList.toggle('is-active', !isChat);
+        // Show/hide feedback pill based on whether game exists
+        var feedbackPill = document.getElementById('ai-feedback-pill');
+        if (feedbackPill) feedbackPill.style.display = (isChat || !currentGameHTML) ? 'none' : 'flex';
+      }
+      // Expose globally for app.js
+      window.switchAiTab = switchAiTab;
+
+      // Ideas send → AI Builder
+      ideasSendBtn && ideasSendBtn.addEventListener('click', function() {
+        var prompt = ideasPromptText ? ideasPromptText.textContent.trim() : '';
+        closeIdeasPanel();
+        setTimeout(function() { openAiBuilder(prompt); }, 60);
+      });
+
+      // Remix → AI Builder
+      window.addEventListener('remix:submit', function(e) {
+        var detail = e.detail || {};
+        var sourceName = detail.sourceName || '';
+        var sourceHTML = detail.sourceHTML || null;
+        var remixText = remixInput ? remixInput.value.trim() : '';
+
+        // If we have the source game HTML and a remix description, use remixGame
+        if (sourceHTML && remixText && typeof remixGame === 'function') {
+          setTimeout(function() { openAiBuilder(); }, 60);
+          setTimeout(function() { remixGame(sourceHTML, sourceName, remixText); }, 500);
+        } else {
+          // Fallback: just open builder with remix text as prompt
+          var prompt = remixText || 'Remix ' + sourceName;
+          setTimeout(function() { openAiBuilder(prompt); }, 60);
+        }
+      });
+
+      aiBuilderClose && aiBuilderClose.addEventListener('click', closeAiBuilder);
+      aiTabChat && aiTabChat.addEventListener('click', function() { switchAiTab('chat'); });
+      aiTabPreview && aiTabPreview.addEventListener('click', function() { switchAiTab('preview'); });
+
+      // Chat input send
+      function sendAiChat() {
+        var text = aiChatInput ? aiChatInput.value.trim() : '';
+        if (!text || (typeof isGenerating !== 'undefined' && isGenerating)) return;
+        aiChatInput.value = '';
+        if (typeof generateGame === 'function') generateGame(text);
+      }
+
+      aiSendBtn && aiSendBtn.addEventListener('click', sendAiChat);
+      aiChatInput && aiChatInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAiChat(); }
+      });
+
+      // Quick prompt shortcuts
+      document.querySelectorAll('.ai-quick-prompt').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var prompt = btn.dataset.prompt || '';
+          if (prompt && aiChatInput) {
+            aiChatInput.value = prompt;
+            sendAiChat();
+          }
+        });
+      });
+
+      // New chat button
+      aiNewChatBtn && aiNewChatBtn.addEventListener('click', function() {
+        if (typeof isGenerating !== 'undefined' && isGenerating) return;
+        // Reset state
+        aiConversationHistory = [];
+        currentGameHTML = null;
+        currentGameName = '';
+        var messagesEl = document.getElementById('ai-chat-messages');
+        if (messagesEl) messagesEl.innerHTML = '<div class="ai-msg ai-msg-ai"><div class="ai-msg-ai-av"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="12" rx="5"/><line x1="7" y1="13" x2="7" y2="15.5"/><line x1="5.5" y1="14.25" x2="8.5" y2="14.25"/><circle cx="16" cy="12.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="19" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg><span>aippy</span></div><div class="ai-welcome-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.68 5.17L19 10l-5.32 1.83L12 17l-1.68-5.17L5 10l5.32-1.83L12 3z"/></svg> Describe any game you want to create!</div></div>';
+        // Reset preview
+        var canvas = document.getElementById('ai-preview-canvas');
+        if (canvas) canvas.innerHTML = '<div class="ai-preview-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"><rect x="2" y="8" width="20" height="12" rx="5"/><line x1="7" y1="13" x2="7" y2="15.5"/><line x1="5.5" y1="14.25" x2="8.5" y2="14.25"/><circle cx="16" cy="12.5" r="1.3"/><circle cx="19" cy="15.5" r="1.3"/></svg><p>Your game preview will appear here</p></div>';
+        switchAiTab('chat');
+      });
+
+      // Preview tool buttons → go to chat with modification prompt
+      document.getElementById('ai-tool-tweaks')?.addEventListener('click', function() {
+        switchAiTab('chat');
+        if (aiChatInput) { aiChatInput.value = 'Make the game easier and add more visual effects'; aiChatInput.focus(); }
+      });
+      document.getElementById('ai-tool-colors')?.addEventListener('click', function() {
+        switchAiTab('chat');
+        if (aiChatInput) { aiChatInput.value = 'Change the color scheme to neon purple and cyan'; aiChatInput.focus(); }
+      });
+      document.getElementById('ai-tool-regen')?.addEventListener('click', function() {
+        if (currentGameHTML && typeof generateGame === 'function') {
+          // Regenerate with last prompt
+          var lastPrompt = aiConversationHistory.filter(function(m) { return m.role === 'user'; }).pop();
+          if (lastPrompt) generateGame('Regenerate: ' + lastPrompt.content);
+        }
+      });
+      document.getElementById('ai-tool-sound')?.addEventListener('click', function() {
+        switchAiTab('chat');
+        if (aiChatInput) { aiChatInput.value = 'Add sound effects using Web Audio API'; aiChatInput.focus(); }
+      });
+
+      // Feedback buttons
+      document.getElementById('ai-feedback-yes')?.addEventListener('click', function() {
+        if (aiChatInput) { aiChatInput.value = 'This looks great!'; }
+        sendAiChat();
+      });
+      document.getElementById('ai-feedback-no')?.addEventListener('click', function() {
+        switchAiTab('chat');
+        if (aiChatInput) { aiChatInput.value = 'Make it more fun and add a scoring system'; aiChatInput.focus(); }
+      });
+
+      // Create page input → AI Builder
+      var createTextInput = document.getElementById('create-text-input');
+      var createSendBtn = document.querySelector('.create-tool-send');
+      if (createSendBtn) {
+        createSendBtn.addEventListener('click', function() {
+          var text = createTextInput ? createTextInput.value.trim() : '';
+          if (!text) text = 'Make a fun casual mobile game';
+          createTextInput && (createTextInput.value = '');
+          activatePage('home');
+          setTimeout(function() { openAiBuilder(text); }, 200);
+        });
+      }
+
+      // ── Publish Screen ────────────────────────────
+      var publishScreen  = document.getElementById('publish-screen');
+      var publishClose   = document.getElementById('publish-close');
+      var publishPostBtn = document.getElementById('publish-post-btn');
+      var publishNameInput = document.getElementById('publish-name-input');
+
+      function openPublishScreen() {
+        if (!publishScreen) return;
+        // Pre-fill name
+        if (publishNameInput && typeof currentGameName !== 'undefined' && currentGameName) {
+          publishNameInput.value = currentGameName;
+        }
+        requestAnimationFrame(function() {
+          publishScreen.classList.add('is-open');
+          publishScreen.setAttribute('aria-hidden', 'false');
+        });
+      }
+      function closePublishScreen() {
+        if (!publishScreen) return;
+        publishScreen.classList.remove('is-open');
+        publishScreen.setAttribute('aria-hidden', 'true');
+      }
+
+      aiPostBtn && aiPostBtn.addEventListener('click', openPublishScreen);
+      publishClose && publishClose.addEventListener('click', closePublishScreen);
+
+      // Publish radio selection
+      document.querySelectorAll('.publish-radio-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+          document.querySelectorAll('.publish-radio-item').forEach(function(r) { r.classList.remove('publish-radio-selected'); });
+          item.classList.add('publish-radio-selected');
+          var radio = item.querySelector('input[type="radio"]');
+          if (radio) radio.checked = true;
+        });
+      });
+
+      // Final Post → add game to Feed + Profile
+      publishPostBtn && publishPostBtn.addEventListener('click', function() {
+        var projectName = (publishNameInput && publishNameInput.value.trim()) || 'My Game';
+
+        // Add game to feed
+        if (typeof addGameToFeed === 'function' && typeof currentGameHTML !== 'undefined' && currentGameHTML) {
+          addGameToFeed(currentGameHTML, projectName);
+        }
+
+        // Close overlays
+        closePublishScreen();
+        setTimeout(closeAiBuilder, 80);
+
+        setTimeout(function() {
+          activatePage('home');
+        }, 460);
+      });
+    </script>
+  </body>
+</html>
