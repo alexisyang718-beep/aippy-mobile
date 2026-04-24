@@ -2559,7 +2559,7 @@ body.sheet-open .tab-bar {
 }
 
 .filter-chip {
-  padding: 12px 6px;
+  padding: 12px 10px 6px;
   border-radius: 999px;
   background: transparent;
   border: none;
@@ -2569,7 +2569,8 @@ body.sheet-open .tab-bar {
   transition: color 160ms ease;
   position: relative;
   flex-shrink: 0;
-  min-width: 56px;
+  min-width: 0;
+  width: fit-content;
   text-align: center;
   overflow: visible;
   text-overflow: ellipsis;
