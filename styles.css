@@ -70,6 +70,55 @@ button {
   transform: translateY(0);
 }
 
+/* 游戏详情页 */
+.detail-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+
+.detail-back-btn {
+  position: fixed;
+  top: calc(var(--safe-top) + 12px);
+  left: 16px;
+  z-index: 50;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 140ms ease;
+}
+
+.detail-back-btn:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.detail-back-btn img {
+  display: block;
+}
+
+.detail-game-container {
+  width: 100%;
+  height: 100%;
+}
+
+.detail-game-container .feed-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .feed {
   height: 100%;
   overflow: hidden;
@@ -3772,6 +3821,16 @@ body.sheet-open .tab-bar {
   align-items: center;
   justify-content: center;
   gap: 17px;
+}
+
+/* 详情页隐藏底部导航 */
+.page-view[data-page="detail"].is-active ~ .tab-bar,
+.page-view[data-page="detail"].is-active + .tab-bar {
+  display: none;
+}
+
+body.detail-open .tab-bar {
+  display: none;
 }
 
 .tab-cluster {

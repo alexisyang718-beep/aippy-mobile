@@ -37,6 +37,8 @@ const remixSheet     = document.getElementById('remix-sheet');
 const remixSheetTitle = document.getElementById('remix-sheet-title');
 const remixInput     = document.getElementById('remix-input');
 const remixSubmit    = document.getElementById('remix-submit');
+const detailBackBtn  = document.getElementById('detail-back-btn');
+const detailGameContainer = document.getElementById('detail-game-container');
 
 const planeSurface = document.getElementById('plane-surface');
 const planeTrack   = document.getElementById('plane-track');
@@ -261,13 +263,24 @@ const highlightGameCard = (card) => {
 
 const openGameFromDiscover = (gameName) => {
   const targetCard = Array.from(gameCards).find((card) => card.dataset.game === gameName);
-  if (!targetCard || !feed) return;
-  activatePage('home');
-  window.setTimeout(() => {
-    feed.scrollTo({ top: targetCard.offsetTop, behavior: 'smooth' });
-    highlightGameCard(targetCard);
-  }, 120);
+  if (!targetCard || !detailGameContainer) return;
+  // 克隆游戏卡片到详情页容器
+  detailGameContainer.innerHTML = '';
+  detailGameContainer.appendChild(targetCard.cloneNode(true));
+  // 标记 body 用于隐藏底部导航
+  document.body.classList.add('detail-open');
+  // 跳转到详情页
+  activatePage('detail');
 };
+
+const closeDetailPage = () => {
+  document.body.classList.remove('detail-open');
+  detailGameContainer.innerHTML = '';
+  // 返回之前的页面（默认为 home）
+  activatePage('home');
+};
+
+detailBackBtn?.addEventListener('click', closeDetailPage);
 
 navTabs.forEach((tab) => tab.addEventListener('click', () => activatePage(tab.dataset.target)));
 likeButtons.forEach((btn) => btn.addEventListener('click', () => btn.classList.toggle('active')));
