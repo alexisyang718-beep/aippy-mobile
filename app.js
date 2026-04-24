@@ -8,6 +8,54 @@ const KIMI_API_URL = 'https://api.moonshot.cn/v1/chat/completions';
 const KIMI_MODEL   = 'kimi-k2.5';
 const KIMI_KEY     = 'sk-CmRiuApZFgAwrlgPamwVWiXwHqC6XNugJUSGcn44DjV9rinu';
 
+// ── Shared game data ────────────────────────────
+const GAMES = [
+  {
+    id: 'plane',
+    name: 'Plane Dodge',
+    author: 'Alex Jet',
+    authorInitial: 'A',
+    likes: 31800,
+    liked: true,
+    gradient: 'gradient-hot',
+    miniPreview: 'mini-preview-plane',
+    emoji: '✈'
+  },
+  {
+    id: 'candy',
+    name: 'Candy Pop',
+    author: 'Sugar Lab',
+    authorInitial: 'S',
+    likes: 14200,
+    liked: false,
+    gradient: 'gradient-neon',
+    miniPreview: 'mini-preview-candy',
+    emoji: '🍬'
+  },
+  {
+    id: 'shooter',
+    name: 'Scope Shot',
+    author: 'Scope Club',
+    authorInitial: 'S',
+    likes: 19700,
+    liked: false,
+    gradient: 'gradient-meme',
+    miniPreview: 'mini-preview-scope',
+    emoji: '⌖'
+  },
+  {
+    id: 'music',
+    name: 'Pocket Beats',
+    author: 'Night Loop',
+    authorInitial: 'N',
+    likes: 10900,
+    liked: false,
+    gradient: 'gradient-dice',
+    miniPreview: 'mini-preview-music',
+    emoji: '♫'
+  }
+];
+
 const SYSTEM_PROMPT = `You are Aippy Game Engine, an expert at creating fun, playable mini-games in a single HTML file.
 
 RULES:
@@ -31,7 +79,7 @@ const navTabs        = document.querySelectorAll('.nav-tab');
 const pageViews      = document.querySelectorAll('.page-view');
 const feed           = document.getElementById('feed');
 const gameCards      = document.querySelectorAll('.feed-card[data-game]');
-const discoverJumpCards = document.querySelectorAll('.mini-card-jump[data-game-target]');
+const discoverGrid   = document.querySelector('.discover-grid');
 const remixOverlay   = document.getElementById('remix-overlay');
 const remixSheet     = document.getElementById('remix-sheet');
 const remixSheetTitle = document.getElementById('remix-sheet-title');
@@ -68,7 +116,53 @@ const musicProgress = document.getElementById('music-progress');
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
-let activeRemixCard = null;
+// ── Render discover cards from GAMES data ──────
+function renderDiscoverCards() {
+  if (!discoverGrid) return;
+  discoverGrid.innerHTML = GAMES.map(game => `
+    <button class="discover-card mini-card-jump ${game.gradient}" data-game-target="${game.id}" type="button" aria-label="打开 ${game.name}">
+      <div class="discover-card-thumb">
+        <div class="mini-preview ${game.miniPreview}">${game.emoji}</div>
+      </div>
+      <div class="discover-card-body">
+        <strong>${game.name}</strong>
+        <div class="discover-card-footer">
+          <div class="discover-author">
+            <div class="discover-avatar">${game.authorInitial}</div>
+            <span>${game.author}</span>
+          </div>
+          <button class="discover-like-btn ${gameLikeState[game.id] ? 'liked' : ''}" data-game-id="${game.id}" type="button" aria-label="点赞">
+            <img src="icons/点赞.png" width="13" height="13" alt="likes">
+            <span>${(game.likes / 1000).toFixed(1)}K</span>
+          </button>
+        </div>
+      </div>
+    </button>
+  `).join('');
+
+  // Rebind discover jump cards (card click → open game)
+  document.querySelectorAll('.mini-card-jump[data-game-target]').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Don't open game if clicking like button
+      if (e.target.closest('.discover-like-btn')) return;
+      openGameFromDiscover(card.dataset.gameTarget);
+    });
+  });
+
+  // Bind like buttons
+  document.querySelectorAll('.discover-like-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const gameId = btn.dataset.gameId;
+      gameLikeState[gameId] = !gameLikeState[gameId];
+      btn.classList.toggle('liked', gameLikeState[gameId]);
+    });
+  });
+}
+
+// ── Global game like state ─────────────────────
+const gameLikeState = {};
+GAMES.forEach(g => { gameLikeState[g.id] = g.liked; });
 let remixHideTimer  = null;
 
 // ── Built-in game source HTML for remix ──────────
@@ -984,6 +1078,7 @@ document.addEventListener('mouseup', () => {
 
 // Initialize
 updateFeedCards(true);
+renderDiscoverCards();
 
 // Keyboard shortcuts ──────────────────────────
 document.addEventListener('keydown', (e) => {
