@@ -264,9 +264,14 @@ const highlightGameCard = (card) => {
 const openGameFromDiscover = (gameName) => {
   const targetCard = Array.from(gameCards).find((card) => card.dataset.game === gameName);
   if (!targetCard || !detailGameContainer) return;
-  // 将原始游戏卡片移入详情页容器（保持游戏状态和事件完整）
+  // 保存 feed 堆叠时的 transform（用于返回时恢复）
+  targetCard.dataset._savedTransform = targetCard.style.transform || '';
+  targetCard.dataset._savedTransition = targetCard.style.transition || '';
+  // 移到详情页，清除 transform 使其正常显示
   detailGameContainer.innerHTML = '';
   detailGameContainer.appendChild(targetCard);
+  targetCard.style.transform = 'translateY(0)';
+  targetCard.style.transition = 'none';
   // 标记 body 用于隐藏底部导航
   document.body.classList.add('detail-open');
   // 跳转到详情页
@@ -278,10 +283,13 @@ const closeDetailPage = () => {
   // 把游戏卡片移回 feed
   const cardInDetail = detailGameContainer.querySelector('.feed-card');
   if (cardInDetail && feed) {
+    // 恢复 feed 堆叠时的 transform
+    cardInDetail.style.transform = cardInDetail.dataset._savedTransform || '';
+    cardInDetail.style.transition = cardInDetail.dataset._savedTransition || '';
     feed.appendChild(cardInDetail);
   }
   detailGameContainer.innerHTML = '';
-  // 返回之前的页面（默认为 home）
+  // 返回首页（discover 在 home 内）
   activatePage('home');
 };
 
