@@ -81,7 +81,7 @@ button {
 
 .detail-back-btn {
   position: fixed;
-  top: calc(var(--safe-top) + 12px);
+  bottom: calc(var(--safe-bottom) + 24px);
   left: 16px;
   z-index: 50;
   width: 36px;
