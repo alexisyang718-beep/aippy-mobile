@@ -233,7 +233,7 @@ const closeRemixSheet = () => {
 
 const openRemixSheet = (card) => {
   activeRemixCard = card;
-  const title = card.querySelector('.feed-meta-top h1, .feed-meta-top h2')?.textContent?.trim() || 'Untitled';
+  const title = card.querySelector('.feed-meta-bottom p')?.textContent?.trim() || 'Untitled';
   if (remixHideTimer) window.clearTimeout(remixHideTimer);
   if (remixSheetTitle) remixSheetTitle.textContent = title;
   if (remixInput) remixInput.value = '';
@@ -367,13 +367,6 @@ const GAME_DETAIL_DATA = {
 
 const buildDetailCard = (data) => `
   <section class="feed-card ${data.gradient}">
-    <div class="feed-meta-top compact">
-      <div>
-        <p class="eyebrow">Trending</p>
-        <h2>${data.title}</h2>
-      </div>
-      <div class="pill-muted">Tap to play</div>
-    </div>
     ${data.gameSurface}
     <div class="feed-meta-bottom">
       <div class="feed-stats-row">
@@ -527,7 +520,7 @@ remixSubmit?.addEventListener('click', () => {
   if (!activeRemixCard || remixSubmit.disabled) return;
   // Capture remix source info before closing
   const card = activeRemixCard;
-  const title = card.querySelector('.feed-meta-top h1, .feed-meta-top h2')?.textContent?.trim() || 'Game';
+  const title = card.querySelector('.feed-meta-bottom p')?.textContent?.trim() || 'Game';
   const iframe = card.querySelector('.ai-game-iframe');
   const gameName = card.dataset.game;
   // For built-in games, use the pre-defined HTML; for AI games, use iframe srcdoc

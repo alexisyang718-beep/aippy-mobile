@@ -73,8 +73,12 @@ button {
 /* 游戏详情页 */
 /* Discover 独立 page 可滚动 */
 .page-view[data-page="discover"] {
-  height: 100vh;
   overflow: hidden;
+}
+
+.page-view[data-page="discover"] .discover-page {
+  height: 100%;
+  overflow-y: auto;
 }
 
 .detail-page {
