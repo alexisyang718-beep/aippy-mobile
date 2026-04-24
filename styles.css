@@ -2487,6 +2487,12 @@ body.sheet-open .tab-bar {
   scrollbar-width: none;
 }
 
+.discover-page {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
 .simple-page-head {
   margin-bottom: 18px;
 }
@@ -2624,7 +2630,7 @@ body.sheet-open .tab-bar {
 }
 
 .discover-card-thumb {
-  aspect-ratio: 0.88;
+  aspect-ratio: 0.82;
   overflow: hidden;
   padding: 0;
   width: 100%;
