@@ -2680,32 +2680,15 @@ body.sheet-open .tab-bar {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.discover-like-btn {
+.discover-likes {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: none;
-  border: none;
   color: rgba(255, 255, 255, 0.6);
   flex-shrink: 0;
-  padding: 0;
-  cursor: pointer;
-  transition: transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1), color 160ms ease;
 }
 
-.discover-like-btn:active {
-  transform: scale(0.84);
-}
-
-.discover-like-btn.liked {
-  color: #ff4c66;
-}
-
-.discover-like-btn.liked img {
-  filter: brightness(0) saturate(100%) invert(32%) sepia(98%) saturate(1566%) hue-rotate(320deg) brightness(100%) contrast(103%);
-}
-
-.discover-like-btn span {
+.discover-likes span {
   font-size: 12px;
   letter-spacing: -0.02em;
 }
