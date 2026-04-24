@@ -262,22 +262,24 @@ const highlightGameCard = (card) => {
 };
 
 const openGameFromDiscover = (gameName) => {
-  console.log('[DEBUG] openGameFromDiscover called, gameName:', gameName);
   const targetCard = Array.from(gameCards).find((card) => card.dataset.game === gameName);
-  console.log('[DEBUG] targetCard:', targetCard, 'detailGameContainer:', detailGameContainer);
   if (!targetCard || !detailGameContainer) return;
-  // 克隆游戏卡片到详情页容器
+  // 将原始游戏卡片移入详情页容器（保持游戏状态和事件完整）
   detailGameContainer.innerHTML = '';
-  detailGameContainer.appendChild(targetCard.cloneNode(true));
+  detailGameContainer.appendChild(targetCard);
   // 标记 body 用于隐藏底部导航
   document.body.classList.add('detail-open');
   // 跳转到详情页
   activatePage('detail');
-  console.log('[DEBUG] activatePage detail done');
 };
 
 const closeDetailPage = () => {
   document.body.classList.remove('detail-open');
+  // 把游戏卡片移回 feed
+  const cardInDetail = detailGameContainer.querySelector('.feed-card');
+  if (cardInDetail && feed) {
+    feed.appendChild(cardInDetail);
+  }
   detailGameContainer.innerHTML = '';
   // 返回之前的页面（默认为 home）
   activatePage('home');
@@ -303,15 +305,8 @@ remixButtons.forEach((button) => {
   });
 });
 
-// 初始化日志
-console.log('[DEBUG] discoverJumpCards count:', document.querySelectorAll('.mini-card-jump[data-game-target]').length);
-console.log('[DEBUG] gameCards count:', document.querySelectorAll('.feed-card[data-game]').length);
-console.log('[DEBUG] detailGameContainer:', document.getElementById('detail-game-container'));
-console.log('[DEBUG] detailPage:', document.querySelector('.page-view[data-page="detail"]'));
-
 discoverJumpCards.forEach((card) => {
   card.addEventListener('click', () => {
-    console.log('[DEBUG] discover card clicked, gameTarget:', card.dataset.gameTarget);
     openGameFromDiscover(card.dataset.gameTarget);
   });
 });
