@@ -272,6 +272,14 @@ const openGameFromDiscover = (gameName) => {
 navTabs.forEach((tab) => tab.addEventListener('click', () => activatePage(tab.dataset.target)));
 likeButtons.forEach((btn) => btn.addEventListener('click', () => btn.classList.toggle('active')));
 
+// 全局触感反馈（支持 Vibration API 的移动设备）
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('button, .tab, .feed-card, .game-surface');
+  if (el && navigator.vibrate) {
+    navigator.vibrate(10); // 1ms 极短震动 = 按键触感
+  }
+}, true);
+
 remixButtons.forEach((button) => {
   button.addEventListener('click', () => {
     const card = button.closest('.feed-card');
@@ -282,6 +290,58 @@ remixButtons.forEach((button) => {
 discoverJumpCards.forEach((card) => {
   card.addEventListener('click', () => openGameFromDiscover(card.dataset.gameTarget));
 });
+
+// Filter chip tabs — sliding green indicator
+const filterStrip = document.getElementById('filter-strip');
+const indicator = filterStrip?.querySelector('.tab-indicator');
+const filterChips = filterStrip
+  ? Array.from(filterStrip.querySelectorAll('.filter-chip'))
+  : [];
+
+function positionIndicator(chip, animate = true) {
+  if (!indicator || !chip) return;
+  const cs = getComputedStyle(chip);
+  // Text width only (minus horizontal padding)
+  const textWidth = chip.clientWidth -
+    parseFloat(cs.paddingLeft) -
+    parseFloat(cs.paddingRight);
+  const left = chip.offsetLeft + parseFloat(cs.paddingLeft);
+  if (!animate) {
+    indicator.style.transition = 'none';
+  } else {
+    indicator.style.transition = '';
+  }
+  indicator.style.transform = `translateX(${left}px)`;
+  indicator.style.width = `${textWidth}px`;
+  // Scroll chip into view if needed (especially for 5th+ tabs)
+  chip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}
+
+if (filterChips.length) {
+  // Initial position
+  requestAnimationFrame(() => positionIndicator(filterChips[0], false));
+
+  filterChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      // Restore previous chip's short label if applicable
+      filterChips.forEach((c) => {
+        if (c.dataset.full && !c.classList.contains('active')) {
+          c.textContent = c.textContent.slice(0, 3);
+          c.style.maxWidth = '52px';
+        }
+      });
+      // Apply new active chip
+      filterChips.forEach((c) => c.classList.remove('active'));
+      chip.classList.add('active');
+      // Expand 5th tab to full text
+      if (chip.dataset.full) {
+        chip.textContent = chip.dataset.full;
+        chip.style.maxWidth = '';
+      }
+      positionIndicator(chip, true);
+    });
+  });
+}
 
 remixOverlay?.addEventListener('click', closeRemixSheet);
 remixInput?.addEventListener('input', toggleRemixSubmit);

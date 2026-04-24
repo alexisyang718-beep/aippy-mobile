@@ -2511,7 +2511,7 @@ body.sheet-open .tab-bar {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 18px;
+  padding: 9px 18px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 999px;
@@ -2555,42 +2555,43 @@ body.sheet-open .tab-bar {
   display: flex;
   gap: 8px;
   white-space: nowrap;
+  position: relative;
 }
 
 .filter-chip {
-  padding: 8px 18px;
+  padding: 8px 4px;
   border-radius: 999px;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.58);
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
   font-size: 14px;
   font-weight: 600;
-  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+  transition: color 160ms ease;
   position: relative;
   flex-shrink: 0;
+  min-width: 48px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .filter-chip:hover {
-  background: rgba(255, 255, 255, 0.07);
   color: rgba(255, 255, 255, 0.82);
-  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .filter-chip.active {
   color: white;
-  border-color: transparent;
-  background: rgba(255, 255, 255, 0.1);
 }
 
-.filter-chip.active::after {
-  content: "";
+.tab-indicator {
   position: absolute;
-  bottom: -2px;
-  left: 16px;
-  right: 16px;
-  height: 2px;
+  bottom: 4px;
+  height: 3px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--accent), var(--green));
+  transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1), width 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  will-change: transform, width;
 }
 
 .discover-grid {

@@ -260,21 +260,18 @@
 
         <section class="page-view" data-page="discover">
           <div class="simple-page discover-page">
-            <div class="simple-page-head">
-              <p class="simple-eyebrow">Explore</p>
-              <h3>Discover</h3>
-            </div>
             <label class="search-bar" for="discover-search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               <input id="discover-search" type="text" placeholder="Find people and creations" autocomplete="off" />
             </label>
             <div class="filter-strip-wrap">
-              <div class="filter-strip">
+              <div class="filter-strip" id="filter-strip">
                 <button class="filter-chip active">Hot</button>
                 <button class="filter-chip">Latest</button>
                 <button class="filter-chip">Mindless</button>
                 <button class="filter-chip">Brain Hack</button>
-                <button class="filter-chip">Unhinge</button>
+                <button class="filter-chip" data-full="Unhinged" style="max-width:52px">Uni</button>
+                <div class="tab-indicator"></div>
               </div>
             </div>
             <div class="discover-grid">
