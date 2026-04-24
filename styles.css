@@ -2488,6 +2488,7 @@ body.sheet-open .tab-bar {
 }
 
 .discover-page {
+  height: 100%;
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
