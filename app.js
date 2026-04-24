@@ -261,36 +261,184 @@ const highlightGameCard = (card) => {
   window.setTimeout(() => card.classList.remove('is-highlighted'), 1200);
 };
 
+// ── 详情页数据 ───────────────────────────────
+const GAME_DETAIL_DATA = {
+  plane: {
+    title: 'Plane Dodge',
+    author: 'Alex Jet',
+    avatar: '✈',
+    views: '196K',
+    likes: '31.8K',
+    comments: '908',
+    shares: '1.4K',
+    saves: '2.1K',
+    gradient: 'theme-hunter',
+    surfaceId: 'plane-surface',
+    gameSurface: `
+      <div class="game-surface plane-surface" id="plane-surface">
+        <div class="plane-tip" id="plane-tip">Tap left / right to dodge</div>
+        <div class="plane-track" id="plane-track">
+          <div class="plane-player" id="plane-player"></div>
+        </div>
+        <div class="plane-controls control-row">
+          <button class="game-pill" id="plane-left" type="button">← Left</button>
+          <button class="game-pill" id="plane-right" type="button">Right →</button>
+        </div>
+      </div>`
+  },
+  candy: {
+    title: 'Candy Pop',
+    author: 'Sugar Lab',
+    avatar: '🍬',
+    views: '88K',
+    likes: '14.2K',
+    comments: '730',
+    shares: '800',
+    saves: '1.1K',
+    gradient: 'theme-timer',
+    surfaceId: 'candy-board',
+    gameSurface: `
+      <div class="game-surface candy-surface">
+        <div class="candy-board" id="candy-board"></div>
+        <div class="candy-footer">
+          <span class="surface-hint">Small board, instant clear</span>
+          <button class="game-pill small-pill" id="candy-reset" type="button">Reset</button>
+        </div>
+      </div>`
+  },
+  shooter: {
+    title: 'Scope Shot',
+    author: 'Scope Club',
+    avatar: '🎯',
+    views: '124K',
+    likes: '19.7K',
+    comments: '1.1K',
+    shares: '900',
+    saves: '1.1K',
+    gradient: 'theme-meme',
+    surfaceId: 'shooter-arena',
+    gameSurface: `
+      <div class="game-surface shooter-surface" id="shooter-arena">
+        <div class="shooter-tip" id="shooter-tip">Drag to move the camera</div>
+        <div class="shooter-target" id="shooter-target">
+          <div class="shooter-person-head"></div>
+          <div class="shooter-person-body"></div>
+          <div class="shooter-person-arm left"></div>
+          <div class="shooter-person-arm right"></div>
+          <div class="shooter-person-leg left"></div>
+          <div class="shooter-person-leg right"></div>
+        </div>
+        <div class="shooter-crosshair" id="shooter-crosshair"></div>
+        <div class="shooter-controls control-row">
+          <button class="game-pill fire-pill" id="shooter-fire" type="button">FIRE</button>
+        </div>
+      </div>`
+  },
+  music: {
+    title: 'Pocket Beats',
+    author: 'Night Loop',
+    avatar: '♫',
+    views: '66K',
+    likes: '10.9K',
+    comments: '600',
+    shares: '500',
+    saves: '800',
+    gradient: 'theme-neon',
+    surfaceId: 'music-surface',
+    gameSurface: `
+      <div class="game-surface music-surface" id="music-surface">
+        <div class="music-player">
+          <div class="music-art">
+            <div class="music-disc" id="music-disc"></div>
+          </div>
+          <div class="music-meta">
+            <p>Demo synth loop</p>
+            <strong id="music-status">Paused</strong>
+          </div>
+          <div class="music-progress"><span id="music-progress"></span></div>
+          <div class="music-bars" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <button class="music-play-button" id="music-toggle" type="button">Play Music</button>
+        </div>
+      </div>`
+  }
+};
+
+const buildDetailCard = (data) => `
+  <section class="feed-card ${data.gradient}">
+    <div class="feed-meta-top compact">
+      <div>
+        <p class="eyebrow">Trending</p>
+        <h2>${data.title}</h2>
+      </div>
+      <div class="pill-muted">Tap to play</div>
+    </div>
+    ${data.gameSurface}
+    <div class="feed-meta-bottom">
+      <div class="feed-stats-row">
+        <div class="primary-stat">
+          <img src="icons/浏览量.png" width="28" height="28" alt="">
+          <strong>${data.views}</strong>
+        </div>
+        <div class="stats-trail">
+          <button class="mini-metric save-toggle">
+            <img src="icons/收藏.png" width="28" height="20" alt="">
+            <strong>${data.saves}</strong>
+          </button>
+          <button class="mini-metric like-toggle">
+            <img src="icons/点赞.png" width="21" height="21" alt="">
+            <strong>${data.likes}</strong>
+          </button>
+          <button class="mini-metric comment-btn">
+            <img src="icons/comment.png" width="20" height="20" alt="">
+            <strong>${data.comments}</strong>
+          </button>
+          <button class="mini-metric share-btn">
+            <img src="icons/分享.png" width="20" height="20" alt="">
+            <strong>${data.shares}</strong>
+          </button>
+        </div>
+      </div>
+      <div class="feed-author-row">
+        <div class="creator-block">
+          <div class="avatar">
+            <span>${data.avatar}</span>
+          </div>
+          <div>
+            <div class="author-name-row">
+              <strong>${data.author}</strong>
+            </div>
+            <p>${data.title}</p>
+          </div>
+        </div>
+        <div class="author-actions">
+          <button class="remix-button" aria-label="remix">
+            <img src="icons/remix.png" width="26" height="26" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>`;
+
 const openGameFromDiscover = (gameName) => {
-  const targetCard = Array.from(gameCards).find((card) => card.dataset.game === gameName);
-  if (!targetCard || !detailGameContainer) return;
-  // 保存 feed 堆叠时的 transform（用于返回时恢复）
-  targetCard.dataset._savedTransform = targetCard.style.transform || '';
-  targetCard.dataset._savedTransition = targetCard.style.transition || '';
-  // 移到详情页，清除 transform 使其正常显示
-  detailGameContainer.innerHTML = '';
-  detailGameContainer.appendChild(targetCard);
-  targetCard.style.transform = 'translateY(0)';
-  targetCard.style.transition = 'none';
+  const data = GAME_DETAIL_DATA[gameName];
+  if (!data || !detailGameContainer) return;
+  // 用模板构建详情页内容
+  detailGameContainer.innerHTML = buildDetailCard(data);
   // 标记 body 用于隐藏底部导航
   document.body.classList.add('detail-open');
   // 跳转到详情页
   activatePage('detail');
+  // 重新初始化该游戏的 JS（内置游戏的事件绑定）
+  initBuiltinGame(gameName);
 };
 
 const closeDetailPage = () => {
+  stopBuiltinGame();
   document.body.classList.remove('detail-open');
-  // 把游戏卡片移回 feed
-  const cardInDetail = detailGameContainer.querySelector('.feed-card');
-  if (cardInDetail && feed) {
-    // 恢复 feed 堆叠时的 transform
-    cardInDetail.style.transform = cardInDetail.dataset._savedTransform || '';
-    cardInDetail.style.transition = cardInDetail.dataset._savedTransition || '';
-    feed.appendChild(cardInDetail);
-  }
   detailGameContainer.innerHTML = '';
-  // 返回首页（discover 在 home 内）
-  activatePage('home');
+  activatePage('discover');
 };
 
 detailBackBtn?.addEventListener('click', closeDetailPage);
@@ -885,6 +1033,74 @@ const playMusic = async () => {
 };
 musicToggle?.addEventListener('click', async () => { if (musicState.playing) stopMusic(); else await playMusic(); });
 updateMusicUi('Paused');
+
+// ── Built-in Game Lifecycle (for detail page) ───
+let currentBuiltinInterval = null;
+
+const stopBuiltinGame = () => {
+  if (currentBuiltinInterval) {
+    clearInterval(currentBuiltinInterval);
+    currentBuiltinInterval = null;
+  }
+  // 停止音乐
+  stopMusic();
+};
+
+const initBuiltinGame = (gameName) => {
+  stopBuiltinGame();
+  if (gameName === 'plane') {
+    resetPlaneGame();
+    currentBuiltinInterval = window.setInterval(tickPlaneGame, 50);
+    const surface = document.getElementById('plane-surface');
+    const leftBtn = document.getElementById('plane-left');
+    const rightBtn = document.getElementById('plane-right');
+    leftBtn?.addEventListener('click', () => movePlane(-1));
+    rightBtn?.addEventListener('click', () => movePlane(1));
+    surface?.addEventListener('click', (e) => {
+      if (e.target instanceof HTMLElement && e.target.closest('button')) return;
+      const rect = surface.getBoundingClientRect();
+      movePlane(e.clientX < rect.left + rect.width / 2 ? -1 : 1);
+    });
+  } else if (gameName === 'candy') {
+    resetCandyBoard();
+    const board = document.getElementById('candy-board');
+    const resetBtn = document.getElementById('candy-reset');
+    if (board) {
+      board.addEventListener('click', (e) => {
+        const btn = e.target instanceof HTMLElement ? e.target.closest('.candy-cell') : null;
+        if (!(btn instanceof HTMLButtonElement)) return;
+        const idx = Number(btn.dataset.index), cluster = findCandyCluster(idx);
+        if (cluster.length < 2) { btn.classList.add('is-single'); window.setTimeout(() => btn.classList.remove('is-single'), 180); return; }
+        cluster.forEach(ci => { candyState.cells[ci] = null; });
+        candyState.score += cluster.length * 12; candyState.best = Math.max(candyState.best, cluster.length);
+        collapseCandyBoard(); updateCandyHud(); renderCandyBoard();
+      });
+    }
+    resetBtn?.addEventListener('click', resetCandyBoard);
+  } else if (gameName === 'shooter') {
+    renderShooter(); updateShooterHud();
+    currentBuiltinInterval = window.setInterval(() => {
+      shooterState.phaseX += 0.08; shooterState.phaseY += 0.06;
+      shooterState.targetX = 14 + ((Math.sin(shooterState.phaseX) + 1) / 2) * 72;
+      shooterState.targetY = 25 + ((Math.sin(shooterState.phaseY) + 1) / 2) * 45;
+      renderShooter();
+    }, 40);
+    const arena = document.getElementById('shooter-arena');
+    const fireBtn = document.getElementById('shooter-fire');
+    if (arena) {
+      arena.addEventListener('pointerdown', (e) => { shooterState.dragging = true; setShooterAim(e.clientX, e.clientY); });
+      arena.addEventListener('pointermove', (e) => { if (shooterState.dragging) setShooterAim(e.clientX, e.clientY); });
+      arena.addEventListener('pointerleave', () => { shooterState.dragging = false; });
+      arena.addEventListener('click', (e) => setShooterAim(e.clientX, e.clientY));
+    }
+    fireBtn?.addEventListener('click', fireShot);
+    document.addEventListener('pointerup', () => { shooterState.dragging = false; });
+  } else if (gameName === 'music') {
+    updateMusicUi('Paused');
+    const toggleBtn = document.getElementById('music-toggle');
+    toggleBtn?.addEventListener('click', async () => { if (musicState.playing) stopMusic(); else await playMusic(); });
+  }
+};
 
 // ── Feed Swipe Navigation ────────────────────────
 let currentFeedIndex = 0;
