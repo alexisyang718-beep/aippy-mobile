@@ -301,8 +301,9 @@ const filterChips = filterStrip
 function positionIndicator(chip, animate = true) {
   if (!indicator || !chip) return;
   const cs = getComputedStyle(chip);
-  // Text width only (minus horizontal padding)
-  const textWidth = chip.clientWidth -
+  // Use getBoundingClientRect for precise rendered text width (more accurate than clientWidth - padding for buttons)
+  const chipRect = chip.getBoundingClientRect();
+  const textWidth = chipRect.width -
     parseFloat(cs.paddingLeft) -
     parseFloat(cs.paddingRight);
   const left = chip.offsetLeft + parseFloat(cs.paddingLeft);

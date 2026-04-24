@@ -2559,13 +2559,14 @@ body.sheet-open .tab-bar {
 }
 
 .filter-chip {
-  padding: 12px 10px 6px;
+  padding: 12px 10px 12px;
   border-radius: 999px;
   background: transparent;
   border: none;
   color: rgba(255, 255, 255, 0.45);
   font-size: 16px;
   font-weight: 600;
+  line-height: 1;
   transition: color 160ms ease;
   position: relative;
   flex-shrink: 0;
@@ -2586,7 +2587,7 @@ body.sheet-open .tab-bar {
 
 .tab-indicator {
   position: absolute;
-  bottom: 6px;
+  bottom: 3px;
   height: 3px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--accent), var(--green));
