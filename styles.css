@@ -751,7 +751,7 @@ h3 {
 .creator-block {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   min-width: 0;
 }
 
@@ -760,7 +760,7 @@ h3 {
 }
 
 .creator-block p {
-  margin: 4px 0 0;
+  margin: 2px 0 0;
   color: var(--muted);
   font-size: 13px;
   white-space: nowrap;
@@ -769,8 +769,8 @@ h3 {
 }
 
 .avatar {
-  width: 48px;
-  height: 48px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   display: grid;
   place-items: center;
