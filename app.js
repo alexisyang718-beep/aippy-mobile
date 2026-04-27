@@ -371,7 +371,7 @@ const buildDetailCard = (data) => `
     <div class="feed-meta-bottom">
       <div class="feed-stats-row">
         <div class="primary-stat">
-          <img src="icons/浏览量.png" width="28" height="28" alt="">
+          <img src="icons/浏览量.png" width="26" height="26" alt="">
           <strong>${data.views}</strong>
         </div>
         <div class="stats-trail">
